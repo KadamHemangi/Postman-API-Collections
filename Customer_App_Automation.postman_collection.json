@@ -1,0 +1,1999 @@
+{
+	"info": {
+		"_postman_id": "f6d79015-349a-485e-8742-f370bf06a64c",
+		"name": "Customer_App_Automation",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "25128411",
+		"_collection_link": "https://hemangi-kadam.postman.co/workspace/API-Testing-New~404656cb-9060-4df8-96df-cd9398d1e90e/collection/25128411-f6d79015-349a-485e-8742-f370bf06a64c?action=share&source=collection_link&creator=25128411"
+	},
+	"item": [
+		{
+			"name": "Send OTP",
+			"item": [
+				{
+					"name": "SendOTP",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"To validate response status code is 200\",function()\r",
+									"{\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"var status = pm.response.code;\r",
+									"console.log(\"ValidateAccount:\"+status);\r",
+									"pm.collectionVariables.set('SendOtp_response',status)"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://connect.hicare.in/mobileapi/api/SMS/SendOTP?mobileNo={{mobileno}}",
+							"protocol": "https",
+							"host": [
+								"connect",
+								"hicare",
+								"in"
+							],
+							"path": [
+								"mobileapi",
+								"api",
+								"SMS",
+								"SendOTP"
+							],
+							"query": [
+								{
+									"key": "mobileNo",
+									"value": "{{mobileno}}"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Validate Account",
+			"item": [
+				{
+					"name": "ValidateAccount",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const jsonData=pm.response.json();\r",
+									"console.log(jsonData);\r",
+									"const Data_Arr=jsonData.Data;\r",
+									"console.log(Data_Arr);\r",
+									"const Token=Data_Arr.Token;\r",
+									"console.log(Token);\r",
+									"pm.collectionVariables.set(\"Bearer_Token\",Token);\r",
+									"//let responses = pm.collectionVariables.has('collectionResponses') ? JSON.parse(pm.collectionVariables.get('collectionResponses')) : []; \r",
+									"//responses.push(pm.response.json()); \r",
+									"//pm.collectionVariables.set('collectionResponses', JSON.stringify(responses));\r",
+									"\r",
+									"var status = pm.response.code;\r",
+									"console.log(\"ValidateAccount:\"+status);\r",
+									"pm.collectionVariables.set('ValidateAccount_response',status)\r",
+									"pm.test(\"To validate response status code is 200\",function()\r",
+									"{\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://connect.hicare.in/mobileapi/api/Account/ValidateAccount?mobileNo={{mobileno}}",
+							"protocol": "https",
+							"host": [
+								"connect",
+								"hicare",
+								"in"
+							],
+							"path": [
+								"mobileapi",
+								"api",
+								"Account",
+								"ValidateAccount"
+							],
+							"query": [
+								{
+									"key": "mobileNo",
+									"value": "{{mobileno}}"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "GetDashboard",
+			"item": [
+				{
+					"name": "GetDashboard",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"///let responses = pm.collectionVariables.has('collectionResponses') ? JSON.parse(pm.collectionVariables.get('collectionResponses')) : []; \r",
+									"//responses.push(pm.response.json()); \r",
+									"//pm.collectionVariables.set('collectionResponses', JSON.stringify(responses));\r",
+									"var status = pm.response.code;\r",
+									"console.log(\"GetDashboard:\"+status);\r",
+									"pm.collectionVariables.set('GetDashboard_Response',status)\r",
+									"pm.test(\"To validate response status code is 200\",function()\r",
+									"{\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{Bearer_Token}}"
+							}
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://connect.hicare.in/mobileapi/api/Dashboard/GetDashboard?mobileNo={{mobileno}}",
+							"protocol": "https",
+							"host": [
+								"connect",
+								"hicare",
+								"in"
+							],
+							"path": [
+								"mobileapi",
+								"api",
+								"Dashboard",
+								"GetDashboard"
+							],
+							"query": [
+								{
+									"key": "mobileNo",
+									"value": "{{mobileno}}"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "AddLeadAsync",
+			"item": [
+				{
+					"name": "AddLeadAsync",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"//let responses = pm.collectionVariables.has('collectionResponses') ? JSON.parse(pm.collectionVariables.get('collectionResponses')) : []; \r",
+									"//responses.push(pm.response.json()); \r",
+									"//pm.collectionVariables.set('collectionResponses', JSON.stringify(responses));\r",
+									"var status = pm.response.code;\r",
+									"console.log(\"AddLeadAsync:\"+status);\r",
+									"pm.collectionVariables.set('AddLeadAsync_response',status)\r",
+									"pm.test(\"To validate response status code is 200\",function()\r",
+									"{\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{Bearer_Token}}"
+							}
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"Building\": \"\",\r\n  \"Company\": \"\",\r\n  \"Email\": \"\",\r\n  \"ServiceCategory\": \"\",\r\n  \"BHK\": \"\",\r\n  \"EmployeeCount\": 0,\r\n  \"LeadType\": \"\",\r\n  \"Utm_Campaign\": \"Mobile app\",\r\n  \"Salutation\": \"\",\r\n  \"Remark\": \"\",\r\n  \"Original_Batch_Name\": \"\",\r\n  \"SFDCId\": \"\",\r\n  \"ServiceType\": \"pest\",\r\n  \"Street\": \"\",\r\n  \"Campaign_Url\": \"\",\r\n  \"Gclid\": \"\",\r\n  \"Status\": \"\",\r\n  \"ServiceSubCategory\": \"\",\r\n  \"CallCenterId\": \"\",\r\n  \"Created_On\": \"\",\r\n  \"Agency\": \"\",\r\n  \"Service_Value\": \"\",\r\n  \"Utm_Term\": \"Mobile app\",\r\n  \"Locality\": \"\",\r\n  \"FirstName\": \"Hemangi\",\r\n  \"Priority\": 0,\r\n  \"Utm_Source\": \"Mobile app\",\r\n  \"Lead_Sub_Source\": \"Mobile app\",\r\n  \"Landmark\": \"\",\r\n  \"FlatNo\": \"\",\r\n  \"Service\": \"Termite Service\",\r\n  \"AltMobile\": \"\",\r\n  \"City\": \"\",\r\n  \"Mobile\": \"{{mobileno}}\",\r\n  \"Utm_Content\": \"Mobile app\",\r\n  \"Batch_Name\": \"\",\r\n  \"State\": \"\",\r\n  \"Long\": \"\",\r\n  \"Utm_Sub_Source\": \"Mobile app\",\r\n  \"Lead_Source\": \"Mobile app\",\r\n  \"LastName\": \".\",\r\n  \"LMSId\": \"\",\r\n  \"Pincode\": \"999999\",\r\n  \"Lat\": \"\",\r\n  \"Utm_Medium\": \"Mobile app\",\r\n  \"PaymentMode\": \"\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "https://mobileapi.hicare.in/mobileapi/api/Lead/AddLeadAsync"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Complaints - Service",
+			"item": [
+				{
+					"name": "CreateComplaint",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"//let responses = pm.collectionVariables.has('collectionResponses') ? JSON.parse(pm.collectionVariables.get('collectionResponses')) : []; \r",
+									"//responses.push(pm.response.json()); \r",
+									"//pm.collectionVariables.set('collectionResponses', JSON.stringify(responses));\r",
+									"var status = pm.response.code;\r",
+									"console.log(\"CreateComplaint:\"+status);\r",
+									"pm.collectionVariables.set('CreateComplaint_response',status)\r",
+									"pm.test(\"To validate response status code is 200\",function()\r",
+									"{\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{Bearer_Token}}"
+							}
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"MobileNo\": \"{{mobileno}}\",\r\n  \"ComplaintType\": \"Unethical Practice By SC (Service Not Delivered)\",\r\n  \"ServiceType\": \"Pest\",\r\n  \"ComplaintDescription\": \"Test complaint\",\r\n  \"ServiceNo\": \"1\",\r\n  \"OrderNo\": \"23051764674\",\r\n  \"SubSource\": \"mobileApp\",\r\n  \"ComplaintAttachment\": [],\r\n  \"ComplaintSubType\": \"\",\r\n  \"ComplaintTitle\": \"Test complaint\",\r\n  \"Source\": \"mobileApp\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "https://mobileapi.hicare.in/mobileapi/api/Complaint/CreateComplaint"
+					},
+					"response": []
+				},
+				{
+					"name": "GetAllComplaintByMobileNo",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"//let responses = pm.collectionVariables.has('collectionResponses') ? JSON.parse(pm.collectionVariables.get('collectionResponses')) : []; \r",
+									"//responses.push(pm.response.json()); \r",
+									"//pm.collectionVariables.set('collectionResponses', JSON.stringify(responses));\r",
+									"var status = pm.response.code;\r",
+									"console.log(\"GetAllComplaintByMobileNo:\"+status);\r",
+									"pm.collectionVariables.set('GetAllComplaintByMobileNo_response',status)\r",
+									"pm.test(\"To validate response status code is 200\",function()\r",
+									"{\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://connect.hicare.in/mobileapi/api/Complaint/GetAllComplaintByMobileNo?mobileNo={{mobileno}}",
+							"protocol": "https",
+							"host": [
+								"connect",
+								"hicare",
+								"in"
+							],
+							"path": [
+								"mobileapi",
+								"api",
+								"Complaint",
+								"GetAllComplaintByMobileNo"
+							],
+							"query": [
+								{
+									"key": "mobileNo",
+									"value": "{{mobileno}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetComplaintByMobileNo",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"//let responses = pm.collectionVariables.has('collectionResponses') ? JSON.parse(pm.collectionVariables.get('collectionResponses')) : []; \r",
+									"//responses.push(pm.response.json()); \r",
+									"//pm.collectionVariables.set('collectionResponses', JSON.stringify(responses));\r",
+									"var status = pm.response.code;\r",
+									"console.log(\"GetComplaintByMobileNo:\"+status);\r",
+									"pm.collectionVariables.set('GetComplaintByMobileNo_response',status)\r",
+									"pm.test(\"To validate response status code is 200\",function()\r",
+									"{\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://connect.hicare.in/mobileapi/api/Complaint/GetComplaintByMobileNo?mobileNo={{mobileno}}&serviceType=Pest",
+							"protocol": "https",
+							"host": [
+								"connect",
+								"hicare",
+								"in"
+							],
+							"path": [
+								"mobileapi",
+								"api",
+								"Complaint",
+								"GetComplaintByMobileNo"
+							],
+							"query": [
+								{
+									"key": "mobileNo",
+									"value": "{{mobileno}}"
+								},
+								{
+									"key": "serviceType",
+									"value": "Pest"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetComplaintAttachment",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"//let responses = pm.collectionVariables.has('collectionResponses') ? JSON.parse(pm.collectionVariables.get('collectionResponses')) : []; \r",
+									"//responses.push(pm.response.json()); \r",
+									"//pm.collectionVariables.set('collectionResponses', JSON.stringify(responses));\r",
+									"var status = pm.response.code;\r",
+									"console.log(\"GetComplaintAttachment:\"+status);\r",
+									"pm.collectionVariables.set('GetComplaintAttachment_response',status)\r",
+									"pm.test(\"To validate response status code is 200\",function()\r",
+									"{\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://connect.hicare.in/mobileapi/api/Complaint/GetComplaintAttachment?complaintId=5002x00000aa1ctAAA",
+							"protocol": "https",
+							"host": [
+								"connect",
+								"hicare",
+								"in"
+							],
+							"path": [
+								"mobileapi",
+								"api",
+								"Complaint",
+								"GetComplaintAttachment"
+							],
+							"query": [
+								{
+									"key": "complaintId",
+									"value": "5002x00000aa1ctAAA"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetComplaintReasons",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"//let responses = pm.collectionVariables.has('collectionResponses') ? JSON.parse(pm.collectionVariables.get('collectionResponses')) : []; \r",
+									"//responses.push(pm.response.json()); \r",
+									"//pm.collectionVariables.set('collectionResponses', JSON.stringify(responses));\r",
+									"var status = pm.response.code;\r",
+									"console.log(\"GetComplaintReasons:\"+status);\r",
+									"pm.collectionVariables.set('GetComplaintReasons_response',status)\r",
+									"pm.test(\"To validate response status code is 200\",function()\r",
+									"{\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://connect.hicare.in/mobileapi/api/Complaint/GetComplaintReasons?serviceType=Pest",
+							"protocol": "https",
+							"host": [
+								"connect",
+								"hicare",
+								"in"
+							],
+							"path": [
+								"mobileapi",
+								"api",
+								"Complaint",
+								"GetComplaintReasons"
+							],
+							"query": [
+								{
+									"key": "serviceType",
+									"value": "Pest"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Cart to Order Flow",
+			"item": [
+				{
+					"name": "AddProductInCart",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response status code is 200\", function () {",
+									"  pm.response.to.have.status(200);",
+									"});",
+									"",
+									"",
+									"pm.test(\"Response has the required fields\", function () {",
+									"    const responseData = pm.response.json();",
+									"    ",
+									"    pm.expect(responseData).to.be.an('object');",
+									"    pm.expect(responseData.IsSuccess).to.exist;",
+									"    pm.expect(responseData.Data).to.exist;",
+									"    pm.expect(responseData.ResponseMessage).to.exist;",
+									"});",
+									"",
+									"",
+									"pm.test(\"IsSuccess is a boolean value\", function () {",
+									"  const responseData = pm.response.json();",
+									"  ",
+									"  pm.expect(responseData.IsSuccess).to.be.a('boolean');",
+									"});",
+									"",
+									"",
+									"pm.test(\"Data is a non-negative integer\", function () {",
+									"  const responseData = pm.response.json();",
+									"  ",
+									"  pm.expect(responseData.Data).to.be.a('number');",
+									"  pm.expect(responseData.Data).to.be.at.least(0, \"Data should be a non-negative integer\");",
+									"});",
+									"",
+									"",
+									"pm.test(\"ResponseMessage is a string\", function () {",
+									"  const responseData = pm.response.json();",
+									"  ",
+									"  pm.expect(responseData.ResponseMessage).to.be.a('string');",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://connect.hicare.in/product/api/mobile/Cart/AddProductInCart?quantity=1&productId=1&userId={{userId}}",
+							"protocol": "https",
+							"host": [
+								"connect",
+								"hicare",
+								"in"
+							],
+							"path": [
+								"product",
+								"api",
+								"mobile",
+								"Cart",
+								"AddProductInCart"
+							],
+							"query": [
+								{
+									"key": "quantity",
+									"value": "1"
+								},
+								{
+									"key": "productId",
+									"value": "1"
+								},
+								{
+									"key": "userId",
+									"value": "{{userId}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetProductCountInCart",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"//let responses = pm.collectionVariables.has('collectionResponses') ? JSON.parse(pm.collectionVariables.get('collectionResponses')) : []; \r",
+									"//responses.push(pm.response.json()); \r",
+									"//pm.collectionVariables.set('collectionResponses', JSON.stringify(responses));\r",
+									"var status = pm.response.code;\r",
+									"console.log(\"GetProductCountInCart:\"+status);\r",
+									"pm.collectionVariables.set('GetProductCountInCart_response',status)\r",
+									"pm.test(\"To validate response status code is 200\",function()\r",
+									"{\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://connect.hicare.in/product/api/mobile/Cart/GetProductCountInCart?userId={{userId}}",
+							"protocol": "https",
+							"host": [
+								"connect",
+								"hicare",
+								"in"
+							],
+							"path": [
+								"product",
+								"api",
+								"mobile",
+								"Cart",
+								"GetProductCountInCart"
+							],
+							"query": [
+								{
+									"key": "userId",
+									"value": "{{userId}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetProductListByPincode",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"To validate response status code is 200\",function()\r",
+									"{\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"var status = pm.response.code;\r",
+									"console.log(\"GetProductListByPincode:\"+status);\r",
+									"pm.collectionVariables.set('GetProductListByPincode_response',status)"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://connect.hicare.in/product/api/mobile/Product/GetProductListByPincode?pincode={{pincode}}",
+							"protocol": "https",
+							"host": [
+								"connect",
+								"hicare",
+								"in"
+							],
+							"path": [
+								"product",
+								"api",
+								"mobile",
+								"Product",
+								"GetProductListByPincode"
+							],
+							"query": [
+								{
+									"key": "pincode",
+									"value": "{{pincode}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetProductCartByUserId",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const jsonData=pm.response.json();\r",
+									"console.log(jsonData);\r",
+									"const Data_Arr=jsonData.Data;\r",
+									"console.log(Data_Arr);\r",
+									"\r",
+									"\r",
+									"const Cart_Id=Data_Arr.Cart_Id;\r",
+									"console.log(Cart_Id);\r",
+									"pm.collectionVariables.set(\"Cart_Id\",Cart_Id);\r",
+									"pm.test(\"To validate response status code is 200\",function()\r",
+									"{\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"var status = pm.response.code;\r",
+									"console.log(\"GetProductCartByUserId:\"+status);\r",
+									"pm.collectionVariables.set('GetProductCartByUserId_response',status)"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://connect.hicare.in/product/api/mobile/Cart/GetProductCartByUserId?userId={{userId}}&pincode={{pincode}}",
+							"protocol": "https",
+							"host": [
+								"connect",
+								"hicare",
+								"in"
+							],
+							"path": [
+								"product",
+								"api",
+								"mobile",
+								"Cart",
+								"GetProductCartByUserId"
+							],
+							"query": [
+								{
+									"key": "userId",
+									"value": "{{userId}}"
+								},
+								{
+									"key": "pincode",
+									"value": "{{pincode}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetCartSummary",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"To validate response status code is 200\",function()\r",
+									"{\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"var status = pm.response.code;\r",
+									"console.log(\"GetCartSummary:\"+status);\r",
+									"pm.collectionVariables.set('GetCartSummary_response',status)"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://connect.hicare.in/product/api/mobile/Cart/GetCartSummary?userId={{userId}}&pincode={{pincode}}&voucherCode={{voucherCode}}",
+							"protocol": "https",
+							"host": [
+								"connect",
+								"hicare",
+								"in"
+							],
+							"path": [
+								"product",
+								"api",
+								"mobile",
+								"Cart",
+								"GetCartSummary"
+							],
+							"query": [
+								{
+									"key": "userId",
+									"value": "{{userId}}"
+								},
+								{
+									"key": "pincode",
+									"value": "{{pincode}}"
+								},
+								{
+									"key": "voucherCode",
+									"value": "{{voucherCode}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetCustomerAddressByCustomerId",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"To validate response status code is 200\",function()\r",
+									"{\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"var status = pm.response.code;\r",
+									"console.log(\"GetCustomerAddressByCustomerId:\"+status);\r",
+									"pm.collectionVariables.set('GetCustomerAddressByCustomerId_response',status)"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://connect.hicare.in/product/api/mobile/Address/GetCustomerAddressByCustomerId?customerId={{userId}}",
+							"protocol": "https",
+							"host": [
+								"connect",
+								"hicare",
+								"in"
+							],
+							"path": [
+								"product",
+								"api",
+								"mobile",
+								"Address",
+								"GetCustomerAddressByCustomerId"
+							],
+							"query": [
+								{
+									"key": "customerId",
+									"value": "{{userId}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "SaveAddress",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const jsonData=pm.response.json();\r",
+									"console.log(jsonData);\r",
+									"const Data_Arr=jsonData.Data;\r",
+									"console.log(Data_Arr);\r",
+									"const address=Data_Arr.Data;\r",
+									"pm.collectionVariables.set(\"addressId\",Data_Arr);\r",
+									"pm.test(\"To validate response status code is 200\",function()\r",
+									"{\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"var status = pm.response.code;\r",
+									"console.log(\"SaveAddress:\"+status);\r",
+									"pm.collectionVariables.set('SaveAddress_response',status)"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"IsDefault\": false,\r\n  \"Contact_Person_Mobile\": \"9833425754\",\r\n  \"Address_Lat\": \"\",\r\n  \"Locality\": \"xvhhdfg\",\r\n  \"Landmark\": \"dghh\",\r\n  \"Contact_Person_Name\": \"ghhh\",\r\n  \"Flat_No\": \"sdf\",\r\n  \"City\": \"fhjj\",\r\n  \"OrderId\": 0,\r\n  \"Contact_Person_Email\": \"hemangi.kadam@hicare.com\",\r\n  \"Customer_Id\": 37,\r\n  \"State\": \"fbhj\",\r\n  \"Street\": \"dfgh\",\r\n  \"GST_No\": \"\",\r\n  \"Id\": 0,\r\n  \"AddressType\": \"Home\",\r\n  \"Address_Long\": \"\",\r\n  \"Building_Name\": \"dghj\",\r\n  \"Pincode\": \"400078\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "https://connect.hicare.in/product/api/mobile/Address/SaveAddress"
+					},
+					"response": []
+				},
+				{
+					"name": "GetAddressDetailById",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"To validate response status code is 200\",function()\r",
+									"{\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"var status = pm.response.code;\r",
+									"console.log(\"GetAddressDetailById:\"+status);\r",
+									"pm.collectionVariables.set('GetAddressDetailById_response',status)"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://connect.hicare.in/product/api/mobile/Address/GetAddressDetailById?addressId={{addressId}}",
+							"protocol": "https",
+							"host": [
+								"connect",
+								"hicare",
+								"in"
+							],
+							"path": [
+								"product",
+								"api",
+								"mobile",
+								"Address",
+								"GetAddressDetailById"
+							],
+							"query": [
+								{
+									"key": "addressId",
+									"value": "{{addressId}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ValidateVoucher",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"To validate response status code is 200\",function()\r",
+									"{\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"var status = pm.response.code;\r",
+									"console.log(\"ValidateVoucher:\"+status);\r",
+									"pm.collectionVariables.set('ValidateVoucher_response',status)"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://connect.hicare.in/product/api/mobile/Voucher/ValidateVoucher?voucherCode={{voucherCode}}&userId={{userId}}&pincode={{pincode}}",
+							"protocol": "https",
+							"host": [
+								"connect",
+								"hicare",
+								"in"
+							],
+							"path": [
+								"product",
+								"api",
+								"mobile",
+								"Voucher",
+								"ValidateVoucher"
+							],
+							"query": [
+								{
+									"key": "voucherCode",
+									"value": "{{voucherCode}}"
+								},
+								{
+									"key": "userId",
+									"value": "{{userId}}"
+								},
+								{
+									"key": "pincode",
+									"value": "{{pincode}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CreateRazorpayProductOrderId",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"To validate response status code is 200\",function()\r",
+									"{\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"var status = pm.response.code;\r",
+									"console.log(\"CreateRazorpayProductOrderId:\"+status);\r",
+									"pm.collectionVariables.set('CreateRazorpayProductOrderId_response',status)"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"VoucherCode\": \"{{voucherCode}}\",\r\n  \"DeliveryCharges\": \"0\",\r\n  \"cartsyncforpayment\": \"16060\",\r\n  \"TotalAmount\": \"1399\",\r\n  \"FinalAmount\": \"17.98\",\r\n  \"VoucherDiscount\": \"881.02\",\r\n  \"OrderSource\": \"CustomerApp\",\r\n  \"userId\": \"{{userId}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "https://connect.hicare.in/product/api/mobile/Order/CreateRazorpayProductOrderId"
+					},
+					"response": []
+				},
+				{
+					"name": "SaveMobileProductOrder",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"To validate response status code is 200\",function()\r",
+									"{\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"var status = pm.response.code;\r",
+									"console.log(\"SaveMobileProductOrder:\"+status);\r",
+									"pm.collectionVariables.set('SaveMobileProductOrder_response',status)"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"Booking_Source\": \"\",\r\n  \"SFDC_OrderNo\": \"\",\r\n  \"PayStatus\": \"\",\r\n  \"Razorpay_Payment_Id\": \"order_NbStxDMyLf8uvXD\",\r\n  \"DelieveryCharges\": 0,\r\n  \"PayAmount\": 0,\r\n  \"CartAmount\": 17.98,\r\n  \"PaymentId\": \"order_NbStxDMyLf8uvXD\",\r\n  \"Order_Source\": \"\",\r\n  \"PayableAmount\": 17.98,\r\n  \"DiscountAmount\": 500,\r\n  \"InstallationCharges\": 0,\r\n  \"VoucherCode\": \"{{voucherCode}}\",\r\n  \"Referred_By_Technician\": \"\",\r\n  \"PayMethod\": \"\",\r\n  \"HomeProduct\": [\r\n    {\r\n      \"Counter\": 1,\r\n      \"Discount\": 1381.02,\r\n      \"Discount_Type\": \"Cash\",\r\n      \"Discounted_Price\": 500,\r\n      \"Installation_Charges\": 0,\r\n      \"Price_Per_Quantity\": 600,\r\n      \"Product_Code\": \"AUTOMOS_STARTER\",\r\n      \"Product_Display_Name\": \"AutoMos + 1 Refill + 2 Batteries – Starter Pack - 90 Days\",\r\n      \"Product_Id\": 1,\r\n      \"Product_Name\": \"AutoMos + 1 Refill + 2 Batteries – Starter Pack - 90 Days\",\r\n      \"Product_Thumbnail\": \"https://s3.ap-south-1.amazonaws.com/hicare-others/18d67353-8866-4644-8c50-59a503efc5ec.jpg\",\r\n      \"Product_Weight\": 90,\r\n      \"StockCounterAmount\": 0\r\n    }\r\n  ],\r\n  \"BillToAddressId\": {{addressId}},\r\n  \"User_Id\": {{userId}},\r\n  \"AddressId\": {{addressId}},\r\n  \"Pincode\": \"{{pincode}}\",\r\n  \"Payment_LinkId\": \"\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "https://connect.hicare.in/product/api/mobile/Order/SaveMobileProductOrder"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Complaints - Product",
+			"item": [
+				{
+					"name": "ComplaintListByUserId",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"To validate response status code is 200\",function()\r",
+									"{\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"var status = pm.response.code;\r",
+									"console.log(\"ComplaintListByUserId:\"+status);\r",
+									"pm.collectionVariables.set('ComplaintListByUserId_response',status)"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://connect.hicare.in/product/api/mobile/ProductComplaint/ComplaintListByUserId?userId={{userId}}",
+							"protocol": "https",
+							"host": [
+								"connect",
+								"hicare",
+								"in"
+							],
+							"path": [
+								"product",
+								"api",
+								"mobile",
+								"ProductComplaint",
+								"ComplaintListByUserId"
+							],
+							"query": [
+								{
+									"key": "userId",
+									"value": "{{userId}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetComplaintDetailId",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"To validate response status code is 200\",function()\r",
+									"{\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"var status = pm.response.code;\r",
+									"console.log(\"GetComplaintDetailId:\"+status);\r",
+									"pm.collectionVariables.set('GetComplaintDetailId_response',status)"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://connect.hicare.in/product/api/mobile/ProductComplaint/GetComplaintDetailId?complaitId=2589",
+							"protocol": "https",
+							"host": [
+								"connect",
+								"hicare",
+								"in"
+							],
+							"path": [
+								"product",
+								"api",
+								"mobile",
+								"ProductComplaint",
+								"GetComplaintDetailId"
+							],
+							"query": [
+								{
+									"key": "complaitId",
+									"value": "2589"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "SaveComplaint",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"To validate response status code is 200\",function()\r",
+									"{\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"var status = pm.response.code;\r",
+									"console.log(\"SaveComplaint:\"+status);\r",
+									"pm.collectionVariables.set('SaveComplaint_response',status)"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{Bearer_Token}}"
+							}
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"Order_Id\": 34172,\r\n  \"Email\": \"\",\r\n  \"OrderNumber\": \"24983341617551684\",\r\n  \"OrderValuePostDiscount\": 3.6,\r\n  \"Is_Active\": true,\r\n  \"Customer_Id\": {{userId}},\r\n  \"Updated_On\": \"2024-02-16T12:55:32.183\",\r\n  \"Mobile_No\": \"{{mobileno}}\",\r\n  \"Complaint_Subject\": \"test\",\r\n  \"Complaint_Type\": \"\",\r\n  \"Complaint_Status\": \"Booked\",\r\n  \"Last_Interaction\": \"\",\r\n  \"Complaint_Description\": \"test\",\r\n  \"User_Name\": \"Guest\",\r\n  \"Contact_Person_Mobile\": \"{{mobileno}}\",\r\n  \"Created_On\": \"2024-02-16T12:55:32.183\",\r\n  \"Product_Id\": 12,\r\n  \"Product_Name\": \"\",\r\n  \"Contact_Person_Name\": \"Guest\",\r\n  \"Product_Display_Name\": \"\",\r\n  \"OrderDate\": \"2024-02-16T12:55:32.183\",\r\n  \"HiCare_Remark\": \"\",\r\n  \"AttachmentList\": [],\r\n  \"Id\": 0,\r\n  \"Created_By\": 9217\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "https://connect.hicare.in/product/api/Complaint/SaveComplaint"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Orders",
+			"item": [
+				{
+					"name": "GetOrderList",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"To validate response status code is 200\",function()\r",
+									"{\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"var status = pm.response.code;\r",
+									"console.log(\"GetOrderList:\"+status);\r",
+									"pm.collectionVariables.set('GetOrderList_response',status)"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://connect.hicare.in/product/api/run/Order/GetOrderList?userId=37\n",
+							"protocol": "https",
+							"host": [
+								"connect",
+								"hicare",
+								"in"
+							],
+							"path": [
+								"product",
+								"api",
+								"run",
+								"Order",
+								"GetOrderList"
+							],
+							"query": [
+								{
+									"key": "userId",
+									"value": "37\n"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Pincode",
+			"item": [
+				{
+					"name": "GetPincodeList",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"To validate response status code is 200\",function()\r",
+									"{\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"var status = pm.response.code;\r",
+									"console.log(\"GetPincodeList:\"+status);\r",
+									"pm.collectionVariables.set('GetPincodeList_response',status)"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://connect.hicare.in/product/api/Pincode/GetPincodeList?pincode={{pincode}}",
+							"protocol": "https",
+							"host": [
+								"connect",
+								"hicare",
+								"in"
+							],
+							"path": [
+								"product",
+								"api",
+								"Pincode",
+								"GetPincodeList"
+							],
+							"query": [
+								{
+									"key": "pincode",
+									"value": "{{pincode}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetPincodeDetail",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const jsonData = pm.response.json();\r",
+									"console.log(jsonData);\r",
+									"const Data_Arr = jsonData.Data;\r",
+									"console.log(Data_Arr);\r",
+									"const Id = Data_Arr.Id;\r",
+									"console.log(Id);\r",
+									"pm.collectionVariables.set(\"pincodeId\", Id);\r",
+									"pm.test(\"To validate response status code is 200\",function()\r",
+									"{\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"var status = pm.response.code;\r",
+									"console.log(\"GetPincodeDetail:\"+status);\r",
+									"pm.collectionVariables.set('GetPincodeDetail_response',status)"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://connect.hicare.in/product/api/Pincode/GetPincodeDetail?pincodeId=2086",
+							"protocol": "https",
+							"host": [
+								"connect",
+								"hicare",
+								"in"
+							],
+							"path": [
+								"product",
+								"api",
+								"Pincode",
+								"GetPincodeDetail"
+							],
+							"query": [
+								{
+									"key": "pincodeId",
+									"value": "2086"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Customer",
+			"item": [
+				{
+					"name": "GetCustomerByMobile",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"To validate response status code is 200\",function()\r",
+									"{\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"var status = pm.response.code;\r",
+									"console.log(\"GetCustomerByMobile:\"+status);\r",
+									"pm.collectionVariables.set('GetCustomerByMobile_response',status)"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://connect.hicare.in/product/api/mobile/Customer/GetCustomerByMobile?mobileNo={{mobileno}}",
+							"protocol": "https",
+							"host": [
+								"connect",
+								"hicare",
+								"in"
+							],
+							"path": [
+								"product",
+								"api",
+								"mobile",
+								"Customer",
+								"GetCustomerByMobile"
+							],
+							"query": [
+								{
+									"key": "mobileNo",
+									"value": "{{mobileno}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetCustomerReferralCode",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"To validate response status code is 200\",function()\r",
+									"{\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"var status = pm.response.code;\r",
+									"console.log(\"GetCustomerByMobile:\"+status);\r",
+									"pm.collectionVariables.set('GetCustomerByMobile_response',status)"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://connect.hicare.in/product/api/mobile/Customer/GetCustomerReferralCode?mobileNo={{mobileno}}",
+							"protocol": "https",
+							"host": [
+								"connect",
+								"hicare",
+								"in"
+							],
+							"path": [
+								"product",
+								"api",
+								"mobile",
+								"Customer",
+								"GetCustomerReferralCode"
+							],
+							"query": [
+								{
+									"key": "mobileNo",
+									"value": "{{mobileno}}"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Notifications",
+			"item": [
+				{
+					"name": "Service",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"To validate response status code is 200\",function()\r",
+									"{\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"var status = pm.response.code;\r",
+									"console.log(\"PublishAppNotificationByMobileNoAsync:\"+status);\r",
+									"pm.collectionVariables.set('PublishAppNotificationByMobileNoAsync_response',status)"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"MobileNo\": \"{{mobileno}}\",\r\n  \"Title\": \"HiCare Test\",\r\n  \"Message\": \"Hi Shubham.\",\r\n  \"MessageId\": \"123\",\r\n  \"NotificationImage\": \"\",\r\n  \"PageLink\": \"\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "https://mobileapi.hicare.in/mobileapi/api/Notification/PublishAppNotificationByMobileNoAsync"
+					},
+					"response": []
+				},
+				{
+					"name": "Product",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"To validate response status code is 200\",function()\r",
+									"{\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"var status = pm.response.code;\r",
+									"console.log(\"PublishAppNotificationByMobileNoAsync:\"+status);\r",
+									"pm.collectionVariables.set('PublishAppNotificationByMobileNoAsync_response',status)"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"MobileNo\": \"{{mobileno}}\",\r\n  \"Title\": \"HiCare Test\",\r\n  \"Message\": \"Hi Shubham.\",\r\n  \"MessageId\": \"123\",\r\n  \"NotificationImage\": \"\",\r\n  \"PageLink\": \"\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "https://mobileapi.hicare.in/mobileapi/api/Notification/PublishAppNotificationByMobileNoAsync"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Address",
+			"item": [
+				{
+					"name": "GetCustomerAddressByCustomerId",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response status code is 200\", function () {",
+									"  pm.expect(pm.response.code).to.equal(200);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://connect.hicare.in/product/api/mobile/Address/GetCustomerAddressByCustomerId?customerId={{userId}}",
+							"protocol": "https",
+							"host": [
+								"connect",
+								"hicare",
+								"in"
+							],
+							"path": [
+								"product",
+								"api",
+								"mobile",
+								"Address",
+								"GetCustomerAddressByCustomerId"
+							],
+							"query": [
+								{
+									"key": "customerId",
+									"value": "{{userId}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetAddressDetailById",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response status code is 200\", function () {",
+									"  pm.expect(pm.response.code).to.equal(200);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://connect.hicare.in/product/api/mobile/Address/GetAddressDetailById?addressId=16807",
+							"protocol": "https",
+							"host": [
+								"connect",
+								"hicare",
+								"in"
+							],
+							"path": [
+								"product",
+								"api",
+								"mobile",
+								"Address",
+								"GetAddressDetailById"
+							],
+							"query": [
+								{
+									"key": "addressId",
+									"value": "16807"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Cart",
+			"item": [
+				{
+					"name": "DeleteProductInCart",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response status code is 200\", function () {",
+									"  pm.response.to.have.status(200);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://connect.hicare.in/product/api/mobile/Cart/DeleteProductInCart?cartId=16894&userId={{userId}}",
+							"protocol": "https",
+							"host": [
+								"connect",
+								"hicare",
+								"in"
+							],
+							"path": [
+								"product",
+								"api",
+								"mobile",
+								"Cart",
+								"DeleteProductInCart"
+							],
+							"query": [
+								{
+									"key": "cartId",
+									"value": "16894"
+								},
+								{
+									"key": "userId",
+									"value": "{{userId}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetProductCountInCart",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response status code is 200\", function () {",
+									"  pm.response.to.have.status(200);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://connect.hicare.in/product/api/mobile/Cart/GetProductCountInCart?userId={{userId}}",
+							"protocol": "https",
+							"host": [
+								"connect",
+								"hicare",
+								"in"
+							],
+							"path": [
+								"product",
+								"api",
+								"mobile",
+								"Cart",
+								"GetProductCountInCart"
+							],
+							"query": [
+								{
+									"key": "userId",
+									"value": "{{userId}}"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Email",
+			"item": [
+				{
+					"name": "Send Email",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"To validate response status code is 200\",function()\r",
+									"{\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"subject\": \"API Response Code - Customer App\",\r\n  \"body\": \"SendOTP : {{SendOTP_response}} , ValidateAccount : {{ValidateAccount_response}} , GetDashboard : {{GetDashboard_Response}} , AddLeadAsync : {{AddLeadAsync_response}} , CreateComplaint : {{CreateComplaint_response}} , GetAllComplaintByMobileNo : {{GetAllComplaintByMobileNo_response}} , GetComplaintByMobileNo : {{GetComplaintByMobileNo_response}} , GetComplaintAttachment : {{GetComplaintAttachment_response}} , GetComplaintReasons : {{GetComplaintReasons_response}} ,  GetProductCountInCart : {{GetProductCountInCart_response}} , GetProductListByPincode : {{GetProductListByPincode_response}}, GetProductCartByUserId : {{GetProductCartByUserId_response}} GetCartSummary : {{GetCartSummary_response}}, GetCustomerAddressByCustomerId : {{GetCustomerAddressByCustomerId_response}} , SaveAddress : {{SaveAddress_response}} , GetAddressDetailById : {{GetAddressDetailById_response}} , ValidateVoucher : {{ValidateVoucher_response}} , CreateRazorpayProductOrderId : {{CreateRazorpayProductOrderId_response}} , ComplaintListByUserId : {{ComplaintListByUserId_response}} ,  GetComplaintDetailId : {{GetComplaintDetailId_response}} , SaveComplaint : {{SaveComplaint_response}} ,  SaveMobileProductOrder : {{SaveMobileProductOrder_response}}, GetPincodeList : {{GetPincodeList_response}}, GetPincodeDetail : {{GetPincodeDetail_response}} , GetCustomerByMobile : {{GetCustomerByMobile_response}} , GetCustomerReferralCode : {{GetCustomerReferralCode_response}} , PublishAppNotificationByMobileNoAsync : {{PublishAppNotificationByMobileNoAsync_response}} \",\r\n  \"sender\": \"noreply@hicare.in\",\r\n  \"recipient\": \"hemangi.kadam@hicare.in\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "https://71xhlo32t6.execute-api.ap-south-1.amazonaws.com/default/SendEmail"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Mock request",
+			"item": [
+				{
+					"name": "Mock Test",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"MobileNo\": \"{{mobileno}}\",\r\n  \"Title\": \"HiCare Test\",\r\n  \"Message\": \"Hi Shubham.\",\r\n  \"MessageId\": \"123\",\r\n  \"NotificationImage\": \"\",\r\n  \"PageLink\": \"\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "https://mobileapi.hicare.in/mobileapi/api/Notification/PublishAppNotificationByMobileNoAsync"
+					},
+					"response": [
+						{
+							"name": "Mock Test example",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"MobileNo\": \"{{mobileno}}\",\r\n  \"Title\": \"HiCare Test\",\r\n  \"Message\": \"Hi Shubham.\",\r\n  \"MessageId\": \"123\",\r\n  \"NotificationImage\": \"\",\r\n  \"PageLink\": \"\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "https://mobileapi.hicare.in/mobileapi/api/Notification/PublishAppNotificationByMobileNoAsync"
+							},
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": null
+						}
+					]
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": {
+			"token": "{{Bearer_Token}}"
+		}
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "Bearer_Token",
+			"value": ""
+		},
+		{
+			"key": "external_link",
+			"value": "https://product.hicare.in/"
+		},
+		{
+			"key": "NotificationImage",
+			"value": "https://s3.ap-south-1.amazonaws.com/hicare-others/05da731f-5669-4770-9ea9-061c6d954042.png"
+		},
+		{
+			"key": "collectionResponses",
+			"value": ""
+		},
+		{
+			"key": "GetDashboard_Response",
+			"value": ""
+		},
+		{
+			"key": "ValidateAccount_response",
+			"value": ""
+		},
+		{
+			"key": "SendOTP_response",
+			"value": ""
+		},
+		{
+			"key": "Current_Timestamp",
+			"value": ""
+		},
+		{
+			"key": "AddLeadAsync_response",
+			"value": ""
+		},
+		{
+			"key": "CreateComplaint_response",
+			"value": ""
+		},
+		{
+			"key": "GetAllComplaintByMobileNo_response",
+			"value": ""
+		},
+		{
+			"key": "GetComplaintByMobileNo_response",
+			"value": ""
+		},
+		{
+			"key": "GetComplaintAttachment_response",
+			"value": ""
+		},
+		{
+			"key": "GetComplaintReasons_response",
+			"value": ""
+		},
+		{
+			"key": "mobileno",
+			"value": "9833425754"
+		},
+		{
+			"key": "pincode",
+			"value": "400078"
+		},
+		{
+			"key": "userId",
+			"value": "37"
+		},
+		{
+			"key": "GetProductCountInCart_response",
+			"value": ""
+		},
+		{
+			"key": "voucherCode",
+			"value": "HICAREP01"
+		},
+		{
+			"key": "addressId",
+			"value": ""
+		},
+		{
+			"key": "Cart_Id",
+			"value": ""
+		},
+		{
+			"key": "pincodeId",
+			"value": ""
+		},
+		{
+			"key": "SendOtp_response",
+			"value": ""
+		},
+		{
+			"key": "GetProductListByPincode_response",
+			"value": ""
+		},
+		{
+			"key": "GetProductCartByUserId_response",
+			"value": ""
+		},
+		{
+			"key": "GetCartSummary_response",
+			"value": ""
+		},
+		{
+			"key": "GetCustomerAddressByCustomerId_response",
+			"value": ""
+		},
+		{
+			"key": "SaveAddress_response",
+			"value": ""
+		},
+		{
+			"key": "GetAddressDetailById_response",
+			"value": ""
+		},
+		{
+			"key": "ValidateVoucher_response",
+			"value": ""
+		},
+		{
+			"key": "CreateRazorpayProductOrderId_response",
+			"value": ""
+		},
+		{
+			"key": "ComplaintListByUserId_response",
+			"value": ""
+		},
+		{
+			"key": "GetComplaintDetailId_response",
+			"value": ""
+		},
+		{
+			"key": "SaveComplaint_response",
+			"value": ""
+		},
+		{
+			"key": "SaveMobileProductOrder_response",
+			"value": ""
+		},
+		{
+			"key": "GetPincodeList_response",
+			"value": ""
+		},
+		{
+			"key": "GetPincodeDetail_response",
+			"value": ""
+		},
+		{
+			"key": "GetCustomerByMobile_response",
+			"value": ""
+		},
+		{
+			"key": "GetCustomerReferralCode_response",
+			"value": ""
+		},
+		{
+			"key": "PublishAppNotificationByMobileNoAsync_response",
+			"value": ""
+		},
+		{
+			"key": "serviceinternallink",
+			"value": "Service|21|3778|400605|8976399055|https://s3.ap-south-1.amazonaws.com/hicare-others/8b88c42f-f538-4f1e-9d82-1c085035d9f1.png",
+			"type": "string"
+		},
+		{
+			"key": "productinternalllink",
+			"value": "Product|21|3778|400605|8976399055|https://s3.ap-south-1.amazonaws.com/hicare-others/8b88c42f-f538-4f1e-9d82-1c085035d9f1.png",
+			"type": "string"
+		},
+		{
+			"key": "GetOrderList_response",
+			"value": ""
+		}
+	]
+}
